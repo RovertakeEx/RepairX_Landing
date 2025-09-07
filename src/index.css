@@ -225,3 +225,7 @@
 .hover\:bg-repairx-yellow-dark:hover {
     background-color: hsl(var(--repairx-yellow-dark));
 }
+
+.fill-repairx-yellow {
+    fill: hsl(var(--repairx-yellow));
+}

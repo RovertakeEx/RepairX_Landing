@@ -111,8 +111,8 @@ const Courses = () => {
                     <div className="flex items-center"><Users className="h-4 w-4 mr-1 text-repairx-yellow"/> {course.students} enrolled</div>
                   </div>
                   <ul className="space-y-2 mb-6 mt-3 ">
-                      {course.features.map((feature) => (
-                          <li className="flex items-center text-sm text-muted-foreground">
+                      {course.features.map((feature, index) => (
+                          <li key={index} className="flex items-center text-sm text-muted-foreground">
                             <Award className="w-4 h-4 text-repairx-yellow mr-3 flex-shrink-0"/>
                             {feature}
                           </li>
