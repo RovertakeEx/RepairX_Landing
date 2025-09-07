@@ -12,12 +12,12 @@ const Contact = () => {
 
   const phoneNumber = "94717100072";
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
      e.preventDefault();
 
     // Format message
@@ -138,7 +138,7 @@ const Contact = () => {
                 <p className="text-sm text-muted-foreground">Fill out the form below and we'll get back to you within 24 hours</p>
             </div>
             <div className="p-6 pt-0">
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <form onSubmit={handleSubmit} className="space-y-6 text-start">
                   <div className="space-y-2">
                     <label htmlFor="" className="text-sm font-medium leading-none">Full Name</label>
                     <input 

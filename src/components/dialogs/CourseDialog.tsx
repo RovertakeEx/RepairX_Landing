@@ -25,12 +25,12 @@ const CourseDialog = ({isOpen, onClose, courseName} : CourseModalProps) => {
   
     const phoneNumber = "94717100072";
   
-    const handleChange = (e) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
       const { name, value } = e.target;
       setFormData((prev) => ({ ...prev, [name]: value }));
     };
   
-    const handleSubmit = (e) => {
+    const handleSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
        e.preventDefault();
   
       // Format message
@@ -77,7 +77,7 @@ const CourseDialog = ({isOpen, onClose, courseName} : CourseModalProps) => {
                                 <span>Join {courseName}</span>
                                 <button className='bg-none border-0 cursor-pointer' onClick={onClose}><X size={15}/></button>
                                 </DialogTitle>
-                                <div className="mt-5">
+                                <div className="mt-5 text-start">
                                     <div className="mb-2">
                                         <label htmlFor="" className="text-sm font-medium leading-none">Full Name</label>
                                         <input 
