@@ -1,18 +1,24 @@
 import { 
-  MessageCircle, Facebook, Instagram, Youtube 
+  MessageCircle, Facebook, Instagram, Music2 
 } from "lucide-react";
 
 function Footer() {
   // Social links array
   const socialLinks = [
-    { icon: MessageCircle, href: "https://wa.me/919876543210", label: "WhatsApp", hoverColor: "text-green-500" },
-    { icon: Facebook, href: "https://facebook.com/repairx", label: "Facebook", hoverColor: "text-blue-600" },
-    { icon: Instagram, href: "https://instagram.com/repairx", label: "Instagram", hoverColor: "text-pink-600" },
-    { icon: Youtube, href: "https://youtube.com/repairx", label: "YouTube", hoverColor: "text-red-600" },
+    { icon: MessageCircle, href: "https://wa.me/919876543210", label: "WhatsApp", hoverColor: "hover:text-green-500" },
+    { icon: Facebook, href: "https://facebook.com/repairx", label: "Facebook", hoverColor: "hover:text-blue-600" },
+    { icon: Instagram, href: "https://instagram.com/repairx", label: "Instagram", hoverColor: "hover:text-pink-600" },
+    { icon: Music2, href: "https://tiktok.com/@repairx", label: "TikTok", hoverColor: "hover:bg-gradient-to-r hover:from-pink-500 hover:to-cyan-400 hover:text-transparent hover:bg-clip-text" }, 
   ];
 
   // Quick links array
-  const quickLinks = ["Home", "About", "Services", "Courses", "Contact"];
+  const quickLinks = [
+    { name: "Home", path: "/home" },
+    { name: "About", path: "/about" },
+    { name: "Services", path: "/services" },
+    { name: "Courses", path: "/courses" },
+    { name: "Contact", path: "/contact" },
+  ];
 
   // Contact info array
   const contactInfo = [
@@ -46,10 +52,11 @@ function Footer() {
                     href={link.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`p-3 bg-white/10 rounded-full transition-all duration-300 hover:bg-white/20 hover:scale-110 ${link.hoverColor}`}
                     aria-label={link.label}
+                    className="p-3 bg-white/10 rounded-full transition-all duration-300 hover:bg-white/20 hover:scale-110"
                   >
-                    <Icon className="h-5 w-5" />
+                    {/* Move hoverColor to Icon */}
+                    <Icon className={`h-5 w-5 text-white transition-colors duration-300 ${link.hoverColor}`} />
                   </a>
                 );
               })}
@@ -62,9 +69,12 @@ function Footer() {
             <ul className="space-y-3">
               {quickLinks.map((link, index) => (
                 <li key={index}>
-                  <button className="text-gray-300 hover:text-repairx-yellow transition-colors duration-200 text-left">
-                    {link}
-                  </button>
+                  <a
+                    href={link.path}
+                    className="text-gray-300 hover:text-repairx-yellow transition-colors duration-200"
+                  >
+                    {link.name}
+                  </a>
                 </li>
               ))}
             </ul>
@@ -75,9 +85,15 @@ function Footer() {
             <h3 className="text-lg font-semibold mb-4 text-repairx-yellow">Contact Info</h3>
             <ul className="space-y-3 text-gray-300">
               {contactInfo.map((item, index) => (
-                <li key={index} className={item.type === "address" || item.type === "hours" ? "text-sm leading-relaxed" : ""}>
+                <li
+                  key={index}
+                  className={item.type === "address" || item.type === "hours" ? "text-sm leading-relaxed" : ""}
+                >
                   {item.href ? (
-                    <a href={item.href} className="hover:text-repairx-yellow transition-colors">
+                    <a
+                      href={item.href}
+                      className="hover:text-repairx-yellow transition-colors"
+                    >
                       {item.value}
                     </a>
                   ) : (
@@ -91,10 +107,24 @@ function Footer() {
 
         {/* Bottom */}
         <div className="border-t border-white/20 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
-          <div className="text-sm text-gray-300 mb-4 md:mb-0">Powered by Rovertake</div>
+          <div className="text-sm text-gray-300 mb-4 md:mb-0">
+            © 2025 | Powered by{" "}
+            <a
+              href="https://rovertake.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-repairx-yellow transition-colors font-medium"
+            >
+              Rovertake
+            </a>
+          </div>
           <div className="flex space-x-6 text-sm text-gray-300">
-            <a href="#" className="hover:text-repairx-yellow transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-repairx-yellow transition-colors">Terms of Service</a>
+            <a href="#" className="hover:text-repairx-yellow transition-colors">
+              Privacy Policy
+            </a>
+            <a href="#" className="hover:text-repairx-yellow transition-colors">
+              Terms of Service
+            </a>
           </div>
         </div>
       </div>
