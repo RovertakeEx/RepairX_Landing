@@ -177,3 +177,35 @@
 .hover\:text-accent-foreground:hover {
     color: hsl(var(--accent-foreground));
 }
+
+.bg-repairx-yellow-light {
+    background-color: hsl(var(--repairx-yellow-light));
+}
+
+.text-muted-foreground {
+    color: hsl(var(--muted-foreground));
+}
+
+.text-card-foreground {
+    color: hsl(var(--card-foreground));
+}
+
+.bg-card {
+    background-color: hsl(var(--card));
+}
+
+.border-border {
+    border-color: hsl(var(--border));
+}
+
+.bg-repairx-black {
+    background-color: hsl(var(--repairx-black));
+}
+
+.hover\:bg-repairx-gray:hover {
+    background-color: hsl(var(--repairx-gray));
+}
+
+.text-repairx-yellow-dark {
+    color: hsl(var(--repairx-yellow-dark));
+}
