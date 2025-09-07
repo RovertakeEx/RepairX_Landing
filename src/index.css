@@ -169,3 +169,11 @@
 .hover\:text-repairx-black:hover {
     color: hsl(var(--repairx-black));
 }
+
+.hover\:bg-accent:hover {
+    background-color: hsl(var(--accent));
+}
+
+.hover\:text-accent-foreground:hover {
+    color: hsl(var(--accent-foreground));
+}

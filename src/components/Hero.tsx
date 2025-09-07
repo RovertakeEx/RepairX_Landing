@@ -3,7 +3,7 @@ import { ArrowRight, Wrench, GraduationCap } from "lucide-react";
 
 const Hero = () => {
   return (
-    <section className="hero-section relative min-h-screen flex items-center justify-center overflow-hidden ">
+    <section id='home' className="hero-section relative min-h-screen flex items-center justify-center overflow-hidden ">
       <div className='absolute inset-0 gradient-hero opacity-90 flex items-center'>
         <div className='relative z-10 text-center text-white px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto'>
           <div className='animate-float'>
@@ -14,12 +14,12 @@ const Hero = () => {
             Professional mobile repair services and comprehensive training courses to build your future in mobile technology.
           </p>
           <div className='flex flex-col sm:flex-row gap-6 justify-center items-center'>
-            <button className='inline-flex items-center justify-center gap-2 whitespace-nowrap ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 h-11 rounded-md bg-repairx-yellow hover:bg-repairx-yellow-dark text-repairx-black font-semibold px-8 py-4 text-lg shadow-yellow transition-all duration-300 hover:scale-105'>
+            <button className='inline-flex items-center justify-center gap-2 whitespace-nowrap cursor-pointer [&_svg]:size-4 [&_svg]:shrink-0 h-11 rounded-md bg-repairx-yellow hover:bg-repairx-yellow-dark text-repairx-black font-semibold px-8 py-4 text-lg shadow-yellow transition-all duration-300 hover:scale-105'>
               <GraduationCap/>
               Explore Courses
               <ArrowRight/>
             </button>
-            <button className='inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border bg-white h-11 rounded-md border-white text-repairx-black hover:bg-white hover:text-repairx-black px-8 py-4 text-lg transition-all duration-300 hover:scale-105'>
+            <button className='inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium cursor-pointer [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border bg-white h-11 rounded-md border-white text-repairx-black hover:bg-white hover:text-repairx-black px-8 py-4 text-lg transition-all duration-300 hover:scale-105'>
               <Wrench/>
               Get Repair Service
               <ArrowRight/>
