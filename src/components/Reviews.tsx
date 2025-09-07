@@ -1,3 +1,4 @@
+import { Star, Quote } from "lucide-react";
 
 const Reviews = () => {
   return (

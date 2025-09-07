@@ -1,3 +1,4 @@
+import { Smartphone, Cpu, HardDrive, Monitor, Wrench, Shield } from "lucide-react";
 
 const Services = () => {
   return (
