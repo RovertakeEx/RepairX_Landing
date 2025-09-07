@@ -1,6 +1,10 @@
+import { useState } from 'react'
 import { Smartphone, Cpu, HardDrive, Monitor, Wrench, Shield } from "lucide-react";
+import ServiceDialog from "./dialogs/ServiceDialog";
 
 const Services = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedService, setSelectedService] = useState("");
 
   const services = [
     {
@@ -41,6 +45,10 @@ const Services = () => {
     }
   ];
 
+  const handleServiceClick = (serviceName: string) => {
+    setSelectedService(serviceName);
+    setIsModalOpen(true);
+  };
 
   return (
     <section id="services" className="py-20 bg-background">
@@ -54,8 +62,8 @@ const Services = () => {
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 ">
-          {services.map((service) => (
-              <div className="rounded-lg border text-card-foreground shadow-sm border-border hover:shadow-lg transition-all duration-300 hover:-translate-y-2 bg-card">
+          {services.map((service, index) => (
+              <div key={index} className="rounded-lg border text-card-foreground shadow-sm border-border hover:shadow-lg transition-all duration-300 hover:-translate-y-2 bg-card">
                 <div className="flex flex-col space-y-1.5 p-6 text-center pb-4 h-full">
                   <div className="mx-auto mb-4 p-4 bg-repairx-yellow-light rounded-full w-fit">
                     <service.icon className="h-8 w-8 text-repairx-yellow-dark"/>
@@ -71,13 +79,14 @@ const Services = () => {
                           </li>
                       ))}   
                     </ul>
-                    <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap cursor-pointer rounded-md text-sm font-medium [&_svg]:size-4 [&_svg]:shrink-0 h-10 px-4 py-2 w-full bg-repairx-black hover:bg-repairx-gray text-white transition-colors duration-200">Get Service</button>
+                    <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap cursor-pointer rounded-md text-sm font-medium [&_svg]:size-4 [&_svg]:shrink-0 h-10 px-4 py-2 w-full bg-repairx-black hover:bg-repairx-gray text-white transition-colors duration-200" onClick={() => handleServiceClick(service.title)}>Get Service</button>
                   </div>
                 </div>
               </div>
           ))}          
         </div>
       </div>
+      <ServiceDialog isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} serviceName={selectedService}/>
     </section>
   )
 }

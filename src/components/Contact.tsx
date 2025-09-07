@@ -1,6 +1,46 @@
+import { useState } from "react";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
 
 const Contact = () => {
+
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phoneno: "",
+    message: ""
+  });
+
+  const phoneNumber = "94717100072";
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = (e) => {
+     e.preventDefault();
+
+    // Format message
+    const message = `
+    New Inquiry
+    -----------------------
+    Name: ${formData.name}
+    Email: ${formData.email}
+    Phone: ${formData.phoneno}
+    Message: 
+    ${formData.message}`;
+
+    const encodedMessage = encodeURIComponent(message);
+    
+    // Detect if device is mobile
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+    const url = isMobile
+      ? `whatsapp://send?phone=${phoneNumber}&text=${encodedMessage}` // opens WhatsApp app on mobile
+      : `https://wa.me/${phoneNumber}?text=${encodedMessage}`; // opens WhatsApp Web/Desktop
+
+    window.open(url, "_blank");
+  };
 
   const contactInfo = [
     {
@@ -98,25 +138,57 @@ const Contact = () => {
                 <p className="text-sm text-muted-foreground">Fill out the form below and we'll get back to you within 24 hours</p>
             </div>
             <div className="p-6 pt-0">
-                <form action="" className="space-y-6">
+                <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="space-y-2">
                     <label htmlFor="" className="text-sm font-medium leading-none">Full Name</label>
-                    <input type="text" name="name" id="name" placeholder="Enter your full name" className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base placeholder:text-muted-foreground md:text-sm mt-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2" required/>
+                    <input 
+                    type="text" 
+                    name="name" 
+                    id="name"
+                    value={formData.name}
+                    onChange={handleChange} 
+                    placeholder="Enter your full name" 
+                    className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base placeholder:text-muted-foreground md:text-sm mt-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2" 
+                    required/>
                   </div>
                   <div className="space-y-2">
                     <label htmlFor="" className="text-sm font-medium leading-none">Email Address</label>
-                    <input type="email" name="email" id="email" placeholder="Enter your email address" className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base placeholder:text-muted-foreground md:text-sm mt-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2" required/>
+                    <input 
+                    type="email" 
+                    name="email" 
+                    id="email" 
+                    value={formData.email}
+                    onChange={handleChange}
+                    placeholder="Enter your email address" 
+                    className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base placeholder:text-muted-foreground md:text-sm mt-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2" 
+                    required/>
                   </div>
                   <div className="space-y-2">
                     <label htmlFor="" className="text-sm font-medium leading-none">Phone No</label>
-                    <input type="number" name="phone" id="phone" placeholder="Enter your mobile number" className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base placeholder:text-muted-foreground md:text-sm mt-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2" required/>
+                    <input 
+                    type="number" 
+                    name="phoneno" 
+                    id="phoneno"
+                    value={formData.phoneno}
+                    onChange={handleChange} 
+                    placeholder="Enter your mobile number" 
+                    className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base placeholder:text-muted-foreground md:text-sm mt-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2" 
+                    required/>
                   </div>
                   <div className="space-y-2">
                     <label htmlFor="" className="text-sm font-medium leading-none">Message</label>
-                    <textarea name="message" id="message" placeholder="Tell us how we can help you..." className="flex w-full rounded-md border border-input bg-background px-3 py-2 text-base placeholder:text-muted-foreground md:text-sm mt-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2" rows={6} required></textarea>
+                    <textarea 
+                    name="message" 
+                    id="message"
+                    value={formData.message}
+                    onChange={handleChange} 
+                    placeholder="Tell us how we can help you..." 
+                    className="flex w-full rounded-md border border-input bg-background px-3 py-2 text-base placeholder:text-muted-foreground md:text-sm mt-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2" 
+                    rows={6} 
+                    required></textarea>
                   </div>
                   <div className="space-y-2">
-                    <button className="inline-flex items-center justify-center gap-2 cursor-pointer whitespace-nowrap rounded-md text-sm [&_svg]:size-4 [&_svg]:shrink-0 h-10 px-4 py-2 w-full bg-repairx-yellow hover:bg-repairx-yellow-dark text-repairx-black font-semibold transition-colors duration-200">
+                    <button type="submit" className="inline-flex items-center justify-center gap-2 cursor-pointer whitespace-nowrap rounded-md text-sm [&_svg]:size-4 [&_svg]:shrink-0 h-10 px-4 py-2 w-full bg-repairx-yellow hover:bg-repairx-yellow-dark text-repairx-black font-semibold transition-colors duration-200">
                     Send Message
                   </button>
                   </div>

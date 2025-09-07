@@ -2,6 +2,12 @@ import '../assets/css/hero.css'
 import { ArrowRight, Wrench, GraduationCap } from "lucide-react";
 
 const Hero = () => {
+
+  const scrollToSection = (href: string) => {
+    const element = document.querySelector(href);
+    element?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <section id='home' className="hero-section relative min-h-screen flex items-center justify-center overflow-hidden ">
       <div className='absolute inset-0 gradient-hero opacity-90 flex items-center'>
@@ -14,12 +20,16 @@ const Hero = () => {
             Professional mobile repair services and comprehensive training courses to build your future in mobile technology.
           </p>
           <div className='flex flex-col sm:flex-row gap-6 justify-center items-center'>
-            <button className='inline-flex items-center justify-center gap-2 whitespace-nowrap cursor-pointer [&_svg]:size-4 [&_svg]:shrink-0 h-11 rounded-md bg-repairx-yellow hover:bg-repairx-yellow-dark text-repairx-black font-semibold px-8 py-4 text-lg shadow-yellow transition-all duration-300 hover:scale-105'>
+            <button 
+            onClick={() => scrollToSection("#courses")}
+            className='inline-flex items-center justify-center gap-2 whitespace-nowrap cursor-pointer [&_svg]:size-4 [&_svg]:shrink-0 h-11 rounded-md bg-repairx-yellow hover:bg-repairx-yellow-dark text-repairx-black font-semibold px-8 py-4 text-lg shadow-yellow transition-all duration-300 hover:scale-105'>
               <GraduationCap/>
               Explore Courses
               <ArrowRight/>
             </button>
-            <button className='inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium cursor-pointer [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border bg-white h-11 rounded-md border-white text-repairx-black hover:bg-white hover:text-repairx-black px-8 py-4 text-lg transition-all duration-300 hover:scale-105'>
+            <button 
+            onClick={() => scrollToSection("#services")}
+            className='inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium cursor-pointer [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border bg-white h-11 rounded-md border-white text-repairx-black hover:bg-white hover:text-repairx-black px-8 py-4 text-lg transition-all duration-300 hover:scale-105'>
               <Wrench/>
               Get Repair Service
               <ArrowRight/>

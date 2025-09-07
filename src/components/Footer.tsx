@@ -1,23 +1,27 @@
-import { 
-  MessageCircle, Facebook, Instagram, Music2 
-} from "lucide-react";
+import { MessageCircle, Facebook, Instagram, Music2 } from "lucide-react";
 
-function Footer() {
+const Footer = () => {
+
+  const scrollToSection = (href: string) => {
+    const element = document.querySelector(href);
+    element?.scrollIntoView({ behavior: "smooth" });
+  };
+
   // Social links array
   const socialLinks = [
     { icon: MessageCircle, href: "https://wa.me/919876543210", label: "WhatsApp", hoverColor: "hover:text-green-500" },
     { icon: Facebook, href: "https://facebook.com/repairx", label: "Facebook", hoverColor: "hover:text-blue-600" },
     { icon: Instagram, href: "https://instagram.com/repairx", label: "Instagram", hoverColor: "hover:text-pink-600" },
-    { icon: Music2, href: "https://tiktok.com/@repairx", label: "TikTok", hoverColor: "hover:bg-gradient-to-r hover:from-pink-500 hover:to-cyan-400 hover:text-transparent hover:bg-clip-text" }, 
+    { icon: Music2, href: "https://tiktok.com/@repairx", label: "TikTok", hoverColor: "hover:text-purple-600" }, 
   ];
 
   // Quick links array
   const quickLinks = [
-    { name: "Home", path: "/home" },
-    { name: "About", path: "/about" },
-    { name: "Services", path: "/services" },
-    { name: "Courses", path: "/courses" },
-    { name: "Contact", path: "/contact" },
+    { name: "Home", path: "#home" },
+    { name: "About", path: "#about" },
+    { name: "Services", path: "#services" },
+    { name: "Courses", path: "#courses" },
+    { name: "Contact", path: "#contact" },
   ];
 
   // Contact info array
@@ -36,7 +40,7 @@ function Footer() {
           {/* Logo & Description */}
           <div className="lg:col-span-2">
             <div className="text-3xl font-bold mb-4">
-              REPAIR<span className="text-repairx-yellow">X</span>
+              Repair <span className="text-repairx-yellow">X</span>
             </div>
             <p className="text-gray-300 mb-6 leading-relaxed max-w-md">
               Leading mobile repair service and training center. Building the future of mobile technology through professional repair services and comprehensive education programs.
@@ -53,10 +57,10 @@ function Footer() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={link.label}
-                    className="p-3 bg-white/10 rounded-full transition-all duration-300 hover:bg-white/20 hover:scale-110"
+                    className={`p-3 bg-white/10 rounded-full transition-all duration-300 hover:bg-white/20 hover:scale-110 ${link.hoverColor}`}
                   >
                     {/* Move hoverColor to Icon */}
-                    <Icon className={`h-5 w-5 text-white transition-colors duration-300 ${link.hoverColor}`} />
+                    <Icon className={`h-5 w-5 transition-colors duration-300 `} />
                   </a>
                 );
               })}
@@ -69,12 +73,12 @@ function Footer() {
             <ul className="space-y-3">
               {quickLinks.map((link, index) => (
                 <li key={index}>
-                  <a
-                    href={link.path}
+                  <button
+                    onClick={()=> scrollToSection(link.path)}
                     className="text-gray-300 hover:text-repairx-yellow transition-colors duration-200"
                   >
                     {link.name}
-                  </a>
+                  </button>
                 </li>
               ))}
             </ul>
