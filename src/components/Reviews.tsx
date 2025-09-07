@@ -98,6 +98,18 @@ const Reviews = () => {
               </div>
           ))}
         </div>
+        <div className="text-center mt-12">
+          <div className="inline-flex items-center bg-card border border-border rounded-lg p-6 shadow-soft">
+            <div className="flex items-center mr-4">
+              <div className="text-2xl font-bold text-repairx-yellow mr-2">4.6</div>
+              <div className="flex">{renderStars(4)}</div>
+            </div>
+            <div className="text-left">
+              <div className="font-semibold text-card-foreground">Excellent Rating</div>
+              <div className="text-sm text-muted-foreground">Based on 20+ Google Reviews</div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   )
