@@ -1,3 +1,4 @@
+import { CheckCircle, Users, Award, Clock } from "lucide-react";
 
 const About = () => {
   return (

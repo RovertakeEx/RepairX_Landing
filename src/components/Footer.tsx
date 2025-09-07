@@ -1,3 +1,4 @@
+import { Facebook, Instagram, MessageCircle, Youtube } from "lucide-react";
 
 function Footer() {
   return (

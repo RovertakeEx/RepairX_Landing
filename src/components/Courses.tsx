@@ -1,3 +1,4 @@
+import { GraduationCap, Clock, Users, Award } from "lucide-react";
 
 const Courses = () => {
   return (
