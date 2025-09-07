@@ -43,7 +43,7 @@ const Services = () => {
 
 
   return (
-    <section id="services">
+    <section id="services" className="py-20 bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-4xl lg:text-5xl font-bold text-foreground mb-6">
@@ -53,7 +53,7 @@ const Services = () => {
             Professional mobile phone repair services using advanced diagnostic tools and industry-standard techniques. We handle everything from simple fixes to complex chip-level repairs.
           </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 ">
           {services.map((service) => (
               <div className="rounded-lg border text-card-foreground shadow-sm border-border hover:shadow-lg transition-all duration-300 hover:-translate-y-2 bg-card">
                 <div className="flex flex-col space-y-1.5 p-6 text-center pb-4 h-full">

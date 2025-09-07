@@ -209,3 +209,19 @@
 .text-repairx-yellow-dark {
     color: hsl(var(--repairx-yellow-dark));
 }
+
+.bg-repairx-light-gray {
+    background-color: hsl(var(--repairx-light-gray));
+}
+
+.bg-background {
+    background-color: hsl(var(--background));
+}
+
+.hover\:bg-repairx-gray:hover {
+    background-color: hsl(var(--repairx-gray));
+}
+
+.hover\:bg-repairx-yellow-dark:hover {
+    background-color: hsl(var(--repairx-yellow-dark));
+}
