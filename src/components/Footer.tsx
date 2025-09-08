@@ -1,6 +1,7 @@
 import socialLinks from "../data/socialLinks"
 import appSettings from "../data/appSetting";
 import navLinks from "../data/navLinks";
+import logoWhite from "../assets/img/repairx-logo-white.png"
 
 const Footer = () => {
 
@@ -17,7 +18,8 @@ const Footer = () => {
           {/* Logo & Description */}
           <div className="lg:col-span-2">
             <div className="text-3xl font-bold mb-4">
-              Repair <span className="text-repairx-yellow">X</span>
+              {/* Repair <span className="text-repairx-yellow">X</span> */}
+              <img src={logoWhite} alt="RepairX logo" width={150}/>
             </div>
             <p className="text-gray-300 mb-6 leading-relaxed max-w-md">
               Leading mobile repair service and training center. Building the future of mobile technology through professional repair services and comprehensive education programs.
