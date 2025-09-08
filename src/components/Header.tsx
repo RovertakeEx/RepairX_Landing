@@ -3,6 +3,7 @@ import { Menu, X } from "lucide-react";
 import navLinks from "../data/navLinks";
 import logo from "../assets/img/repairx-logo.png"
 import logoWhite from "../assets/img/repairx-logo-white.png"
+import logoSharing from "../assets/img/repairx-sharing-logo.png"
 
 const Header = () => {
 
@@ -34,6 +35,7 @@ const Header = () => {
                 <div className="flex-shrink-0">
                     {/* <h3 className={`${isScrolled ? "text-foreground" : "text-white"} text-2xl font-bold`}>Repair <span className="text-repairx-yellow">X</span></h3> */}
                     <img src={isScrolled ? logo : logoWhite} alt="RepairX logo" width={80}/>
+                    <img src={logoSharing} className="hidden" alt="RepairX logo" />
                 </div>
                 <nav className="hidden md:flex items-center space-x-8">
                     {navLinks.map((link) => (
