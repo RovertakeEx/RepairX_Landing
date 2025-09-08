@@ -22,6 +22,16 @@ const ServiceDialog = ({ isOpen, onClose, serviceName }: ServiceModalProps) => {
     issue: ""
   });
 
+  const clearFields = () => {
+      setFormData({
+          name: "",
+          phoneno: "",
+          model: "",
+          issue: ""
+        });
+    };
+  
+
   const phoneNumber = "94717100072";
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -52,19 +62,24 @@ const ServiceDialog = ({ isOpen, onClose, serviceName }: ServiceModalProps) => {
       : `https://wa.me/${phoneNumber}?text=${encodedMessage}`; // opens WhatsApp Web/Desktop
 
     window.open(url, "_blank");
-    onClose();
+    closeDialog();
+  };
+
+  const closeDialog = () => {
+      clearFields();
+      onClose();
   };
 
   return (
     <div>
-      <Dialog open={open} onClose={onClose} className="relative z-10">
+      <Dialog open={open} onClose={onClose} className="relative z-50">
         <DialogBackdrop
           transition
           className="fixed inset-0 bg-gray-500/75 transition-opacity data-closed:opacity-0 data-enter:duration-300 data-enter:ease-out data-leave:duration-200 data-leave:ease-in"
         />
 
         <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
-          <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+          <div className="flex min-h-full justify-center p-4 text-center items-center sm:p-0">
             <DialogPanel
               transition
               className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all data-closed:translate-y-4 data-closed:opacity-0 data-enter:duration-300 data-enter:ease-out data-leave:duration-200 data-leave:ease-in sm:my-8 w-full sm:max-w-sm data-closed:sm:translate-y-0 data-closed:sm:scale-95"
@@ -75,7 +90,7 @@ const ServiceDialog = ({ isOpen, onClose, serviceName }: ServiceModalProps) => {
                             <div className="mt-3 text-center sm:mt-0 sm:text-left flex-grow">
                                 <DialogTitle as="h3" className="text-base font-semibold text-gray-900 flex justify-between">
                                 <span>Request {serviceName} Service</span>
-                                <button className='bg-none border-0 cursor-pointer' onClick={onClose}><X size={15}/></button>
+                                <button className='bg-none border-0 cursor-pointer' onClick={closeDialog}><X size={15}/></button>
                                 </DialogTitle>
                                 <div className="mt-5 text-start">
                                     <div className="mb-2">
@@ -133,14 +148,14 @@ const ServiceDialog = ({ isOpen, onClose, serviceName }: ServiceModalProps) => {
                     <div className="px-4 pb-5 sm:flex sm:flex-row-reverse sm:px-6">
                         <button
                         type="submit"
-                        className="inline-flex items-center justify-center gap-2 cursor-pointer whitespace-nowrap rounded-md text-sm [&_svg]:size-4 [&_svg]:shrink-0 h-10 px-4 py-2 w-full bg-repairx-yellow hover:bg-repairx-yellow-dark text-repairx-black font-semibold transition-colors duration-200 sm:ml-3 sm:w-1/2"
+                        className="inline-flex items-center justify-center gap-2 whitespace-nowrap cursor-pointer rounded-md text-sm font-medium [&_svg]:size-4 [&_svg]:shrink-0 h-10 px-4 py-2 w-full bg-repairx-black hover:bg-repairx-gray text-white transition-colors duration-200 sm:ml-3 sm:w-1/2"
                         >
                         Submit Request
                         </button>
                         <button
                         type="button"
                         data-autofocus
-                        onClick={onClose}
+                        onClick={closeDialog}
                         className="mt-3 inline-flex w-full justify-center cursor-pointer rounded-md bg-white px-3 py-2 text-sm  [&_svg]:size-4 [&_svg]:shrink-0 font-semibold text-gray-900 shadow-xs inset-ring inset-ring-gray-300 hover:bg-gray-200 transition-colors duration-200 sm:mt-0 sm:w-1/2"
                         >
                         Cancel

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { MapPin, Phone, Mail, Clock } from "lucide-react";
+import appSettings from "../data/appSetting";
 
 const Contact = () => {
 
@@ -9,6 +9,15 @@ const Contact = () => {
     phoneno: "",
     message: ""
   });
+
+   const clearFields = () => {
+    setFormData({
+        name: "",
+        email: "",
+        phoneno: "",
+        message: ""
+      });
+  };
 
   const phoneNumber = "94717100072";
 
@@ -40,34 +49,8 @@ const Contact = () => {
       : `https://wa.me/${phoneNumber}?text=${encodedMessage}`; // opens WhatsApp Web/Desktop
 
     window.open(url, "_blank");
+    clearFields();
   };
-
-  const contactInfo = [
-    {
-      icon: Phone,
-      title: "Phone",
-      info: "+91 98765 43210",
-      link: "tel:+919876543210"
-    },
-    {
-      icon: Mail,
-      title: "Email",
-      info: "info@repairx.com",
-      link: "mailto:info@repairx.com"
-    },
-    {
-      icon: MapPin,
-      title: "Location",
-      info: "123 Tech Street, Digital City, IN 560001",
-      link: "#"
-    },
-    {
-      icon: Clock,
-      title: "Hours",
-      info: "Mon-Sat: 9AM-8PM, Sun: 10AM-6PM",
-      link: "#"
-    }
-  ];
 
   return (
     <section id="contact" className="py-20 bg-background">
@@ -86,7 +69,7 @@ const Contact = () => {
             <div>
               <h3 className="text-2xl font-bold text-foreground mb-6">Contact Information</h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                {contactInfo.map((item, index) => {
+                {appSettings.contactInfo.map((item, index) => {
                   const Icon = item.icon;
                   return (
                     <div
@@ -97,15 +80,15 @@ const Contact = () => {
                         <Icon className="h-6 w-6 text-repairx-yellow-dark" />
                       </div>
                       <div>
-                        <h4 className="font-semibold text-card-foreground mb-1">{item.title}</h4>
-                        {item.link.startsWith('#') ? (
-                          <p className="text-sm text-muted-foreground">{item.info}</p>
+                        <h4 className="font-semibold text-card-foreground mb-1">{item.type}</h4>
+                        {item.href?.startsWith('#') ? (
+                          <p className="text-sm text-muted-foreground">{item.value}</p>
                         ) : (
                           <a
-                            href={item.link}
+                            href={item.href}
                             className="text-sm text-repairx-yellow hover:text-repairx-yellow-dark transition-colors"
                           >
-                            {item.info}
+                            {item.value}
                           </a>
                         )}
                       </div>

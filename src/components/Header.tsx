@@ -1,5 +1,8 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
+import navLinks from "../data/navLinks";
+import logo from "../assets/img/repairx-logo.png"
+import logoWhite from "../assets/img/repairx-logo-white.png"
 
 const Header = () => {
 
@@ -13,14 +16,6 @@ const Header = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-   const navLinks = [
-    { name: "Home", href: "#home" },
-    { name: "About", href: "#about" },
-    { name: "Services", href: "#services" },
-    { name: "Courses", href: "#courses" },
-    { name: "Contact", href: "#contact" },
-  ];
 
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href);
@@ -37,7 +32,8 @@ const Header = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-center justify-between h-16">
                 <div className="flex-shrink-0">
-                    <h3 className={`${isScrolled ? "text-foreground" : "text-white"} text-2xl font-bold`}>Repair <span className="text-repairx-yellow">X</span></h3>
+                    {/* <h3 className={`${isScrolled ? "text-foreground" : "text-white"} text-2xl font-bold`}>Repair <span className="text-repairx-yellow">X</span></h3> */}
+                    <img src={isScrolled ? logo : logoWhite} alt="RepairX logo" width={80}/>
                 </div>
                 <nav className="hidden md:flex items-center space-x-8">
                     {navLinks.map((link) => (

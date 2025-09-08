@@ -1,51 +1,7 @@
 import { Star, Quote } from "lucide-react";
+import reviews  from "../data/reviews";
 
 const Reviews = () => {
-
-  const reviews = [
-    {
-      name: "Amit Kumar",
-      rating: 5,
-      review: "Excellent service! Fixed my iPhone's motherboard issue perfectly. The team is very professional and knowledgeable.",
-      course: "Advanced Repair Course Graduate",
-      location: "Mumbai"
-    },
-    {
-      name: "Priya Sharma",
-      rating: 5,
-      review: "The chip-level training course was amazing. Now I'm running my own successful repair business thanks to RepairX!",
-      course: "Chip-Level Training Graduate",
-      location: "Delhi"
-    },
-    {
-      name: "Rajesh Patel",
-      rating: 5,
-      review: "Quick and reliable repair service. My Samsung Galaxy was completely dead, but they brought it back to life!",
-      course: "Customer",
-      location: "Bangalore"
-    },
-    {
-      name: "Neha Singh",
-      rating: 4,
-      review: "Best mobile repair training institute. The instructors are industry experts and very supportive throughout the course.",
-      course: "iPhone Specialist Course Graduate",
-      location: "Pune"
-    },
-    {
-      name: "Vikash Gupta",
-      rating: 5,
-      review: "Professional data recovery service saved all my important files. Highly recommend RepairX for any mobile issues.",
-      course: "Customer",
-      location: "Hyderabad"
-    },
-    {
-      name: "Anjali Verma",
-      rating: 5,
-      review: "The beginner course was perfect for starting my career in mobile repairs. Great practical training and job support!",
-      course: "Beginner Course Graduate",
-      location: "Chennai"
-    }
-  ];
 
   const renderStars = (rating: number) => {
     return Array.from({ length: 5 }, (_, index) => (
