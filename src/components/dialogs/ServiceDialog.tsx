@@ -44,7 +44,7 @@ const ServiceDialog = ({ isOpen, onClose, serviceName }: ServiceModalProps) => {
 
     // Format message
     const message = `
-    Repair Service Request
+    ${serviceName} Request
     -----------------------
     Name: ${formData.name}
     Phone: ${formData.phoneno}

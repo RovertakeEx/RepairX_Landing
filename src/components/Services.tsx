@@ -1,49 +1,10 @@
 import { useState } from 'react'
-import { Smartphone, Cpu, HardDrive, Monitor, Wrench, Shield } from "lucide-react";
 import ServiceDialog from "./dialogs/ServiceDialog";
+import { services } from '../data/services';
 
 const Services = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedService, setSelectedService] = useState("");
-
-  const services = [
-    {
-      icon: Cpu,
-      title: "Chip-Level Repair",
-      description: "Advanced motherboard and IC chip repairs for complex hardware issues",
-      features: ["IC Replacement", "BGA Reballing", "Microsoldering", "Circuit Analysis"]
-    },
-    {
-      icon: Monitor,
-      title: "Display Solutions",
-      description: "Complete display and touch screen repair services",
-      features: ["LCD Replacement", "Touch Repair", "Digitizer Fix", "Screen Calibration"]
-    },
-    {
-      icon: HardDrive,
-      title: "Data Recovery",
-      description: "Professional data recovery from damaged mobile devices",
-      features: ["File Recovery", "Photo Restoration", "Contact Retrieval", "App Data Recovery"]
-    },
-    {
-      icon: Smartphone,
-      title: "Hardware Repairs",
-      description: "Comprehensive hardware diagnostics and component replacement",
-      features: ["Camera Repair", "Speaker Fix", "Charging Port", "Button Replacement"]
-    },
-    {
-      icon: Shield,
-      title: "Water Damage",
-      description: "Specialized water damage restoration and corrosion treatment",
-      features: ["Liquid Damage", "Corrosion Cleaning", "Component Drying", "Circuit Protection"]
-    },
-    {
-      icon: Wrench,
-      title: "Software Solutions",
-      description: "Software troubleshooting and firmware restoration",
-      features: ["OS Recovery", "Bootloop Fix", "Firmware Flash", "Software Unlock"]
-    }
-  ];
 
   const handleServiceClick = (serviceName: string) => {
     setSelectedService(serviceName);
@@ -61,7 +22,7 @@ const Services = () => {
             Professional mobile phone repair services using advanced diagnostic tools and industry-standard techniques. We handle everything from simple fixes to complex chip-level repairs.
           </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 ">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 ">
           {services.map((service, index) => (
               <div key={index} className="rounded-lg border text-card-foreground shadow-sm border-border hover:shadow-lg transition-all duration-300 hover:-translate-y-2 bg-card">
                 <div className="flex flex-col space-y-1.5 p-6 text-center pb-4 h-full">

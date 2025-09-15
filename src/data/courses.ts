@@ -11,71 +11,73 @@ export interface Course {
 
 export const courses: Course[] = [
   {
-    title: "Beginner Mobile Repair Course",
+    title: "Professinal Mobile Repair Training",
     description: "Perfect for those starting their journey in mobile repair technology",
-    duration: "4 weeks",
-    students: "150+",
-    level: "Beginner",
-    price: "Rs.15,000",
+    duration: "12 days",
+    students: "200+",
+    level: "Professional",
+    price: "Rs.55,000",
     features: [
       "Basic repair techniques",
       "Tool identification & usage",
       "Safety procedures",
       "Component recognition",
-      "Simple troubleshooting"
+      "Simple troubleshooting",
+      "And more 50+ topics"
     ]
   },
   {
-    title: "Advanced Mobile Repair",
+    title: "Advanced Mobile Repair Training",
     description: "Comprehensive training for complex repairs and diagnostics",
-    duration: "8 weeks",
-    students: "200+",
-    level: "Advanced",
-    price: "Rs.25,000",
-    features: [
-      "Advanced diagnostics",
-      "Motherboard repair",
-      "IC replacement",
-      "Data recovery methods",
-      "Business setup guidance"
-    ]
-  },
-  {
-    title: "Chip-Level Training",
-    description: "Master the art of microsoldering and chip-level repairs",
-    duration: "12 weeks",
+    duration: "4 weeks",
     students: "100+",
-    level: "Expert",
-    price: "Rs.40,000",
+    level: "Advanced",
+    price: "Rs.84,000",
     features: [
-      "Microsoldering techniques",
-      "BGA reballing",
-      "Circuit analysis",
-      "Advanced equipment usage",
-      "Industry certification"
+      "Basic Electronics and Live testing",
+      "Schemetic and Block diagrams",
+      "Power flow tracing e.g. Battery => VPH_PWR => PMU => SOC",
+      "Data recovery methods",
+      "Business setup guidance",
+      "And more 100+ topics"
     ]
   },
   {
-    title: "iPhone Specialist Course",
+    title: "iPhone Specialist Training",
     description: "Specialized training focused on Apple device repairs",
-    duration: "6 weeks",
-    students: "120+",
-    level: "Intermediate",
-    price: "Rs.30,000",
+    duration: "7 days",
+    students: "50+",
+    level: "Apple",
+    price: "Rs.90,000",
     features: [
-      "iOS diagnostics",
-      "Apple-specific tools",
-      "Face ID/Touch ID repair",
-      "Logic board issues",
-      "Authorized techniques"
+      "Face to Face Training",
+      "Glass Refurbishment",
+      "Face ID repair",
+      "Battery BMS swap",
+      "And more techniques"
     ]
-  }
+  },
+  {
+  title: "Master iPhone Repair Training",
+  description: "Elite-level program for mastering Apple device repairs, conducted by Indian masters",
+  duration: "3 weeks",
+  students: "20+",
+  level: "Expert",
+  price: "Rs.280,000",
+  features: [
+    "Advanced motherboard repair",
+    "Data recovery & NAND programming",
+    "Micro-soldering techniques",
+    "Panic and CPU pads recover",
+    "And more 150+ professional topics"
+  ]
+}
 ];
 
 export const getLevelColor = (level: string) => {
     switch (level) {
-      case "Beginner": return "bg-green-100 text-green-800";
-      case "Intermediate": return "bg-blue-100 text-blue-800";
+      case "Professional": return "bg-green-100 text-green-800";
+      case "Apple": return "bg-blue-100 text-blue-800";
       case "Advanced": return "bg-orange-100 text-orange-800";
       case "Expert": return "bg-red-100 text-red-800";
       default: return "bg-gray-100 text-gray-800";

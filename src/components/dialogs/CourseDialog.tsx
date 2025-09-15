@@ -44,7 +44,7 @@ const CourseDialog = ({isOpen, onClose, courseName} : CourseModalProps) => {
 
     // Format message
     const message = `
-    Course Registration
+    ${courseName} Registration
     -----------------------
     Name: ${formData.name}
     Phone: ${formData.phoneno}

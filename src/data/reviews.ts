@@ -9,44 +9,44 @@ export interface Review {
 
 const reviews: Review[] = [
   {
-    name: "Kamal Perera",
+    name: "Ifham Bro",
     rating: 5,
-    review: "Excellent service! My phone was fixed quickly and professionally. Highly recommend RepairX Colombo!",
+    review: "Great place to learn mobile phone repairs! Friendly trainers, good practical sessions, and helpful support. Perfect for beginners. Highly recommended!",
     course: "Customer",
     location: "Colombo"
   },
   {
-    name: "Samantha Fernando",
+    name: "Sajadh Ahamed",
     rating: 5,
-    review: "The advanced repair course was amazing. Now I can handle repairs confidently.",
+    review: "Literally this changed my life..from knowing nothing to a pro...the best in the town ❤️ #repairx #sirwaseem #thepro ❤️",
     course: "Advanced Repair Course Graduate",
     location: "Colombo"
   },
   {
-    name: "Nimal Jayasinghe",
+    name: "Mohamed Yoonus",
     rating: 5,
-    review: "Very professional and knowledgeable team. Fixed my motherboard issue perfectly.",
+    review: "A very informative and practical phone repairing course. Grateful for the hands-on experience. Highly recommended!",
     course: "Customer",
     location: "Colombo"
   },
   {
-    name: "Rashmi de Silva",
+    name: "Rimas Ahmed",
     rating: 4,
-    review: "Great training course for beginners. Instructors are supportive and experienced.",
+    review: "The best knowledgeable teaching with guidelines ways of phone Repairing. I'm so glad to give best reviewed.",
     course: "Beginner Course Graduate",
     location: "Colombo"
   },
   {
-    name: "Tharindu Kumara",
+    name: "Rinaz Najim",
     rating: 5,
-    review: "Quick and reliable repair service. My phone works like new again!",
+    review: "Best place to study and practice mobile phone repairing they are covering everything A-Z.",
     course: "Customer",
     location: "Colombo"
   },
   {
-    name: "Dilani Perera",
+    name: "Raseen Rdx",
     rating: 5,
-    review: "Chip-level training was top-notch. I can now run my own repair business.",
+    review: "Repair X: Sri Lanka's leading training center dedicated to advancing your skills. Enroll today and elevate your expertise. Highly recommended.",
     course: "Chip-Level Training Graduate",
     location: "Colombo"
   }
