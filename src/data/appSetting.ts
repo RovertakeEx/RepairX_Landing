@@ -46,7 +46,7 @@ const appSettings: AppSettings = {
     },
   },
   socials: {
-    whatsapp: "https://wa.me/94717100072",
+    whatsapp: "https://wa.me/94767675694",
     facebook: "https://www.facebook.com/p/RepairX-61561864050406/",
     instagram: "https://instagram.com/repairx",
     tiktok: "https://www.tiktok.com/@repairxperts_",

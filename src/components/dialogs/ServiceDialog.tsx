@@ -32,7 +32,7 @@ const ServiceDialog = ({ isOpen, onClose, serviceName }: ServiceModalProps) => {
     };
   
 
-  const phoneNumber = "94717100072";
+  const phoneNumber = "94767675694";
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
