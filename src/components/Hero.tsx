@@ -14,8 +14,7 @@ const Hero = () => {
       <div className='absolute inset-0 gradient-hero opacity-90 flex items-center'>
         <div className='relative z-10 text-center text-white px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto'>
           <div className='animate-float flex justify-center'>
-            {/* <h1 className='text-5xl sm:text-6xl lg:text-7xl font-bold mb-6 leading-tight'>Repair <span className='text-repairx-yellow'>X</span></h1> */}
-            <img src={logoWhite} alt="RepairX logo" width={300}/>
+            <img src={logoWhite} alt="RepairX logo" width={300} />
           </div>
           <h2 className='text-xl sm:text-2xl lg:text-3xl font-light mb-8 text-gray-200'>Advanced Mobile Phone Repairs & Training</h2>
           <p className='text-lg sm:text-xl mb-12 text-gray-300 max-w-2xl mx-auto leading-relaxed'>
