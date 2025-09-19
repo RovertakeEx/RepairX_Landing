@@ -34,7 +34,7 @@ const appSettings: AppSettings = {
   company: {
     name: "RepairX",
     phone: "+94 76 767 5694",
-    email: "info@repairx.com",
+    email: "info@repairx.lk",
     location: "91 1st Cross St, Colombo 11",
     hours: {
       monday_saturday: "9AM - 8PM",
