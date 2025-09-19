@@ -54,7 +54,7 @@ const appSettings: AppSettings = {
   contactInfo: [
     { icon: Phone, type: "phone", value: "+94 76 767 5694", href: "tel:+94767675694" },
     { icon: Mail, type: "email", value: "info@repairx.lk", href: "mailto:info@repairx.lk" },
-    { icon: MapPin, type: "address", value: "91 1st Cross St, Colombo 11" },
+    { icon: MapPin, type: "address", value: "91 1st Cross St, Colombo 11", href: "https://maps.app.goo.gl/BU9RzMYpeimk7xqQ7" },
     { icon: Clock, type: "hours", value: "Mon-Sat: 9AM-8PM\nSun: 10AM-6PM" },
   ]
 };
