@@ -6,6 +6,7 @@ export interface AppSettings {
     name: string;
     phone: string;
     email: string;
+    whatsapp: string;
     location: string;
     hours: {
       monday_saturday: string;
@@ -35,6 +36,7 @@ const appSettings: AppSettings = {
     name: "RepairX",
     phone: "+94 76 767 5694",
     email: "info@repairx.lk",
+    whatsapp: import.meta.env.DEV ? "94717100072" : "94767675694",
     location: "91 1st Cross St, Colombo 11",
     hours: {
       monday_saturday: "9AM - 8PM",

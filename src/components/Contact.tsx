@@ -1,5 +1,6 @@
 import { useState } from "react";
 import appSettings from "../data/appSetting";
+import { toast } from "react-toastify";
 
 const Contact = () => {
 
@@ -19,8 +20,6 @@ const Contact = () => {
       });
   };
 
-  const phoneNumber = "94717100072";
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -29,15 +28,21 @@ const Contact = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
      e.preventDefault();
 
+     if (!formData.name || !formData.email || !formData.phoneno || !formData.message) {
+      toast.error("Please fill in all required fields.");
+      return;
+    }
+
     // Format message
-    const message = `
-    New Inquiry
-    -----------------------
-    Name: ${formData.name}
-    Email: ${formData.email}
-    Phone: ${formData.phoneno}
-    Message: 
-    ${formData.message}`;
+  const message = `
+*New Inquiry*
+    
+Name    :  _${formData.name}_
+Email     :  _${formData.email}_
+Phone   :  _${formData.phoneno}_
+
+*Message  :* 
+${formData.message}`;
 
     const encodedMessage = encodeURIComponent(message);
     
@@ -45,9 +50,10 @@ const Contact = () => {
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
     const url = isMobile
-      ? `whatsapp://send?phone=${phoneNumber}&text=${encodedMessage}` // opens WhatsApp app on mobile
-      : `https://wa.me/${phoneNumber}?text=${encodedMessage}`; // opens WhatsApp Web/Desktop
+      ? `whatsapp://send?phone=${appSettings.company.whatsapp}&text=${encodedMessage}` // opens WhatsApp app on mobile
+      : `https://wa.me/${appSettings.company.whatsapp}?text=${encodedMessage}`; // opens WhatsApp Web/Desktop
 
+    toast.success("Inquiry submitted successfully");
     window.open(url, "_blank");
     clearFields();
   };
@@ -123,7 +129,7 @@ const Contact = () => {
             <div className="p-6 pt-0">
                 <form onSubmit={handleSubmit} className="space-y-6 text-start">
                   <div className="space-y-2">
-                    <label htmlFor="" className="text-sm font-medium leading-none">Full Name</label>
+                    <label htmlFor="" className="text-sm font-medium leading-none">Full Name <span className="text-red-500">*</span></label>
                     <input 
                     type="text" 
                     name="name" 
@@ -131,11 +137,10 @@ const Contact = () => {
                     value={formData.name}
                     onChange={handleChange} 
                     placeholder="Enter your full name" 
-                    className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base placeholder:text-muted-foreground md:text-sm mt-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2" 
-                    required/>
+                    className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base placeholder:text-muted-foreground md:text-sm mt-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"/>
                   </div>
                   <div className="space-y-2">
-                    <label htmlFor="" className="text-sm font-medium leading-none">Email Address</label>
+                    <label htmlFor="" className="text-sm font-medium leading-none">Email Address <span className="text-red-500">*</span></label>
                     <input 
                     type="email" 
                     name="email" 
@@ -143,11 +148,10 @@ const Contact = () => {
                     value={formData.email}
                     onChange={handleChange}
                     placeholder="Enter your email address" 
-                    className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base placeholder:text-muted-foreground md:text-sm mt-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2" 
-                    required/>
+                    className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base placeholder:text-muted-foreground md:text-sm mt-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"/>
                   </div>
                   <div className="space-y-2">
-                    <label htmlFor="" className="text-sm font-medium leading-none">Phone No</label>
+                    <label htmlFor="" className="text-sm font-medium leading-none">Phone No <span className="text-red-500">*</span></label>
                     <input 
                     type="number" 
                     name="phoneno" 
@@ -155,11 +159,10 @@ const Contact = () => {
                     value={formData.phoneno}
                     onChange={handleChange} 
                     placeholder="Enter your mobile number" 
-                    className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base placeholder:text-muted-foreground md:text-sm mt-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2" 
-                    required/>
+                    className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base placeholder:text-muted-foreground md:text-sm mt-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"/>
                   </div>
                   <div className="space-y-2">
-                    <label htmlFor="" className="text-sm font-medium leading-none">Message</label>
+                    <label htmlFor="" className="text-sm font-medium leading-none">Message <span className="text-red-500">*</span></label>
                     <textarea 
                     name="message" 
                     id="message"
@@ -167,8 +170,7 @@ const Contact = () => {
                     onChange={handleChange} 
                     placeholder="Tell us how we can help you..." 
                     className="flex w-full rounded-md border border-input bg-background px-3 py-2 text-base placeholder:text-muted-foreground md:text-sm mt-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2" 
-                    rows={6} 
-                    required></textarea>
+                    rows={6}></textarea>
                   </div>
                   <div className="space-y-2">
                     <button type="submit" className="inline-flex items-center justify-center gap-2 cursor-pointer whitespace-nowrap rounded-md text-sm [&_svg]:size-4 [&_svg]:shrink-0 h-10 px-4 py-2 w-full bg-repairx-yellow hover:bg-repairx-yellow-dark text-repairx-black font-semibold transition-colors duration-200">

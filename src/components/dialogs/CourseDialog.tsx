@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 import { Dialog, DialogBackdrop, DialogPanel, DialogTitle } from '@headlessui/react'
 import { X } from "lucide-react";
+import appSettings from '../../data/appSetting';
+import { toast } from "react-toastify";
 
 interface CourseModalProps {
   isOpen: boolean;
@@ -32,8 +34,6 @@ const CourseDialog = ({isOpen, onClose, courseName} : CourseModalProps) => {
       });
   };
 
-  const phoneNumber = "94767675694";
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -42,14 +42,19 @@ const CourseDialog = ({isOpen, onClose, courseName} : CourseModalProps) => {
   const handleSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
       e.preventDefault();
 
+    if (!formData.name || !formData.phoneno || !formData.email || !formData.level) {
+      toast.error("Please fill in all required fields.");
+      return;
+    }
+
     // Format message
     const message = `
-    ${courseName} Registration
-    -----------------------
-    Name: ${formData.name}
-    Phone: ${formData.phoneno}
-    Email: ${formData.email}
-    Level: ${formData.level}`;
+*${courseName}* Registration
+
+Name    :  _${formData.name}_
+Phone   :  _${formData.phoneno}_
+Email     :  _${formData.email}_
+Level     :  _${formData.level}_`;
 
     const encodedMessage = encodeURIComponent(message);
     
@@ -57,9 +62,10 @@ const CourseDialog = ({isOpen, onClose, courseName} : CourseModalProps) => {
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
     const url = isMobile
-      ? `whatsapp://send?phone=${phoneNumber}&text=${encodedMessage}` // opens WhatsApp app on mobile
-      : `https://wa.me/${phoneNumber}?text=${encodedMessage}`; // opens WhatsApp Web/Desktop
+      ? `whatsapp://send?phone=${appSettings.company.whatsapp}&text=${encodedMessage}` // opens WhatsApp app on mobile
+      : `https://wa.me/${appSettings.company.whatsapp}?text=${encodedMessage}`; // opens WhatsApp Web/Desktop
 
+    toast.success("Thank you for your interest in our course.");
     window.open(url, "_blank");
     closeDialog();
   };
@@ -93,7 +99,7 @@ const CourseDialog = ({isOpen, onClose, courseName} : CourseModalProps) => {
                                 </DialogTitle>
                                 <div className="mt-5 text-start">
                                     <div className="mb-2">
-                                        <label htmlFor="" className="text-sm font-medium leading-none">Full Name</label>
+                                        <label htmlFor="" className="text-sm font-medium leading-none">Full Name <span className="text-red-500">*</span></label>
                                         <input 
                                         type="text" 
                                         name="name" 
@@ -101,11 +107,10 @@ const CourseDialog = ({isOpen, onClose, courseName} : CourseModalProps) => {
                                         value={formData.name}
                                         onChange={handleChange} 
                                         placeholder="Enter your full name" 
-                                        className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base placeholder:text-muted-foreground md:text-sm mt-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2" 
-                                        required/>
+                                        className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base placeholder:text-muted-foreground md:text-sm mt-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"/>
                                     </div>                                    
                                     <div className="mb-2">
-                                        <label htmlFor="" className="text-sm font-medium leading-none">Phone No</label>
+                                        <label htmlFor="" className="text-sm font-medium leading-none">Phone No <span className="text-red-500">*</span></label>
                                         <input 
                                         type="number" 
                                         name="phoneno" 
@@ -113,11 +118,10 @@ const CourseDialog = ({isOpen, onClose, courseName} : CourseModalProps) => {
                                         value={formData.phoneno}
                                         onChange={handleChange} 
                                         placeholder="Enter your mobile number" 
-                                        className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base placeholder:text-muted-foreground md:text-sm mt-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2" 
-                                        required/>
+                                        className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base placeholder:text-muted-foreground md:text-sm mt-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"/>
                                     </div>
                                     <div className="mb-2">
-                                        <label htmlFor="" className="text-sm font-medium leading-none">Email Address</label>
+                                        <label htmlFor="" className="text-sm font-medium leading-none">Email Address <span className="text-red-500">*</span></label>
                                         <input 
                                         type="email" 
                                         name="email" 
@@ -125,18 +129,16 @@ const CourseDialog = ({isOpen, onClose, courseName} : CourseModalProps) => {
                                         value={formData.email}
                                         onChange={handleChange}
                                         placeholder="Enter your email address" 
-                                        className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base placeholder:text-muted-foreground md:text-sm mt-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2" 
-                                        required/>
+                                        className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base placeholder:text-muted-foreground md:text-sm mt-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"/>
                                     </div>
                                     <div className="mb-2">
-                                        <label htmlFor="" className="text-sm font-medium leading-none">Select Your Level</label>
+                                        <label htmlFor="" className="text-sm font-medium leading-none">Select Your Level <span className="text-red-500">*</span></label>
                                         <select 
                                         name="level" 
                                         id="evel" 
                                         value={formData.level}
                                         onChange={handleChange}
-                                        className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base placeholder:text-muted-foreground md:text-sm mt-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2" 
-                                        required>
+                                        className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base placeholder:text-muted-foreground md:text-sm mt-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">
                                             <option value="" selected disabled>Choose your level</option>
                                             <option value="Basic">Basic</option>
                                             <option value="Intermediate">Intermediate</option>

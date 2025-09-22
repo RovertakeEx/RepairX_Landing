@@ -11,7 +11,7 @@ export interface Course {
 
 export const courses: Course[] = [
   {
-    title: "Professinal Mobile Repair Training",
+    title: "Professional Mobile Repair Training",
     description: "Perfect for those starting their journey in mobile repair technology",
     duration: "12 days",
     students: "200+",

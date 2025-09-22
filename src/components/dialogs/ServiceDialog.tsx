@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 import { Dialog, DialogBackdrop, DialogPanel, DialogTitle } from '@headlessui/react'
 import { X } from "lucide-react";
+import appSettings from '../../data/appSetting';
+import { toast } from "react-toastify";
 
 interface ServiceModalProps {
   isOpen: boolean;
@@ -31,9 +33,6 @@ const ServiceDialog = ({ isOpen, onClose, serviceName }: ServiceModalProps) => {
         });
     };
   
-
-  const phoneNumber = "94767675694";
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -42,15 +41,21 @@ const ServiceDialog = ({ isOpen, onClose, serviceName }: ServiceModalProps) => {
   const handleSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
      e.preventDefault();
 
+    if (!formData.name || !formData.phoneno || !formData.model || !formData.issue) {
+      toast.error("Please fill in all required fields.");
+      return;
+    }
+
     // Format message
     const message = `
-    ${serviceName} Request
-    -----------------------
-    Name: ${formData.name}
-    Phone: ${formData.phoneno}
-    Model: ${formData.model}
-    Issue: 
-    ${formData.issue}`;
+*${serviceName}* Request
+    
+Name    :  _${formData.name}_
+Phone   :  _${formData.phoneno}_
+Model   :  _${formData.model}_
+
+*Issue :* 
+${formData.issue}`;
 
     const encodedMessage = encodeURIComponent(message);
     
@@ -58,9 +63,10 @@ const ServiceDialog = ({ isOpen, onClose, serviceName }: ServiceModalProps) => {
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
     const url = isMobile
-      ? `whatsapp://send?phone=${phoneNumber}&text=${encodedMessage}` // opens WhatsApp app on mobile
-      : `https://wa.me/${phoneNumber}?text=${encodedMessage}`; // opens WhatsApp Web/Desktop
+      ? `whatsapp://send?phone=${appSettings.company.whatsapp}&text=${encodedMessage}` // opens WhatsApp app on mobile
+      : `https://wa.me/${appSettings.company.whatsapp}?text=${encodedMessage}`; // opens WhatsApp Web/Desktop
 
+    toast.success("Repaior service request submited successfully.");
     window.open(url, "_blank");
     closeDialog();
   };
@@ -94,7 +100,7 @@ const ServiceDialog = ({ isOpen, onClose, serviceName }: ServiceModalProps) => {
                                 </DialogTitle>
                                 <div className="mt-5 text-start">
                                     <div className="mb-2">
-                                        <label htmlFor="" className="text-sm font-medium leading-none text-start">Full Name</label>
+                                        <label htmlFor="" className="text-sm font-medium leading-none text-start">Full Name <span className="text-red-500">*</span></label>
                                         <input 
                                         type="text" 
                                         name="name" 
@@ -102,11 +108,10 @@ const ServiceDialog = ({ isOpen, onClose, serviceName }: ServiceModalProps) => {
                                         value={formData.name}
                                         onChange={handleChange} 
                                         placeholder="Enter your full name" 
-                                        className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base placeholder:text-muted-foreground md:text-sm mt-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2" 
-                                        required/>
+                                        className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base placeholder:text-muted-foreground md:text-sm mt-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"/>
                                     </div>                                    
                                     <div className="mb-2">
-                                        <label htmlFor="" className="text-sm font-medium leading-none">Phone No</label>
+                                        <label htmlFor="" className="text-sm font-medium leading-none">Phone No <span className="text-red-500">*</span></label>
                                         <input 
                                         type="number" 
                                         name="phoneno" 
@@ -114,11 +119,10 @@ const ServiceDialog = ({ isOpen, onClose, serviceName }: ServiceModalProps) => {
                                         value={formData.phoneno}
                                         onChange={handleChange} 
                                         placeholder="Enter your mobile number" 
-                                        className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base placeholder:text-muted-foreground md:text-sm mt-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2" 
-                                        required/>
+                                        className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base placeholder:text-muted-foreground md:text-sm mt-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"/>
                                     </div>
                                     <div className="mb-2">
-                                        <label htmlFor="" className="text-sm font-medium leading-none">Device Model</label>
+                                        <label htmlFor="" className="text-sm font-medium leading-none">Device Model <span className="text-red-500">*</span></label>
                                         <input 
                                         type="text" 
                                         name="model" 
@@ -126,11 +130,10 @@ const ServiceDialog = ({ isOpen, onClose, serviceName }: ServiceModalProps) => {
                                         value={formData.model}
                                         onChange={handleChange}
                                         placeholder="e.g. iPhone 14 Pro, Samsung Galaxy S23" 
-                                        className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base placeholder:text-muted-foreground md:text-sm mt-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2" 
-                                        required/>
+                                        className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base placeholder:text-muted-foreground md:text-sm mt-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"/>
                                     </div>
                                     <div className="mb-2">
-                                        <label htmlFor="" className="text-sm font-medium leading-none">Describe the Issue</label>
+                                        <label htmlFor="" className="text-sm font-medium leading-none">Describe the Issue <span className="text-red-500">*</span></label>
                                         <textarea 
                                         name="issue" 
                                         id="issue"
@@ -138,8 +141,7 @@ const ServiceDialog = ({ isOpen, onClose, serviceName }: ServiceModalProps) => {
                                         onChange={handleChange} 
                                         placeholder="Please describe the problem with your device..." 
                                         className="flex w-full rounded-md border border-input bg-background px-3 py-2 text-base placeholder:text-muted-foreground md:text-sm mt-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2" 
-                                        rows={3} 
-                                        required></textarea>
+                                        rows={3}></textarea>
                                     </div>
                                 </div>
                             </div>
